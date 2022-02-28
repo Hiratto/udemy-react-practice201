@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { ChildArea } from "./ChildArea";
 import "./styles.css";
 
@@ -9,7 +9,10 @@ export default function App() {
   const onChangeText = (e) => setText(e.target.value);
 
   const onClickOpen = () => setOpen(!open);
-  const onClickClose = () => setOpen(false);
+
+  // アロー関数で定義した関数は毎回新しく生成されたものとみなされ再レンダリングされてしまう
+  // useCallbackで囲うことで再レンダリングさせないようにできる
+  const onClickClose = useCallback(() => setOpen(false), [setOpen]);
 
   return (
     <div className="App">
