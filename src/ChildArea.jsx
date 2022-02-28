@@ -1,15 +1,12 @@
+import { memo } from "react";
+
 const style = {
   width: "100%",
   height: "200px",
   backgroundColor: "khaki"
 };
 
-// 再レンダリングされる条件
-// Stateが更新されたコンポーネント
-// Propsが更新されたコンポーネント
-// 再レンダリングされたコンポーネント配下の子要素
-
-export const ChildArea = (props) => {
+export const ChildArea = memo((props) => {
   const { open } = props;
   console.log("レンダリングされた");
 
@@ -27,4 +24,4 @@ export const ChildArea = (props) => {
       ) : null}
     </>
   );
-};
+});
